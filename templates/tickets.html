@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tickets</title>
+    
+</head>
+
+<body>
+
+<h1>Listado de Tickets</h1>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Prioridad</th>
+    <th>Estado</th>
+    <th>Acción</th>
+</tr>
+
+{% for ticket in tickets %}
+
+<tr>
+    <td>{{ ticket.id }}</td>
+    <td>{{ ticket.titulo }}</td>
+    <td>{{ ticket.descripcion }}</td>
+    <td>{{ ticket.prioridad }}</td>
+    <td>{{ ticket.estado }}</td>
+
+    <td>
+        <a href="/estado/{{ ticket.id }}">
+            Cambiar Estado
+        </a>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">Volver</a>
+
+</body>
+
+</html>

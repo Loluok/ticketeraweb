@@ -1,0 +1,22 @@
+<h2>{{ ticket.titulo }}</h2>
+
+Estado actual:
+
+{{ ticket.estado }}
+
+<form method="POST">
+
+<select name="estado">
+
+<option>Abierto</option>
+<option>En Progreso</option>
+<option>Resuelto</option>
+<option>Cerrado</option>
+
+</select>
+
+<button>
+Actualizar
+</button>
+
+</form>

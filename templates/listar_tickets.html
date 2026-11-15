@@ -1,0 +1,19 @@
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Titulo</th>
+    <th>Estado</th>
+</tr>
+
+{% for ticket in tickets %}
+
+<tr>
+    <td>{{ ticket.id }}</td>
+    <td>{{ ticket.titulo }}</td>
+    <td>{{ ticket.estado }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
