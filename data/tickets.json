@@ -4,12 +4,33 @@
         "titulo": "wdyt ab being abroad?",
         "descripcion": "kkiee",
         "prioridad": "Baja",
-        "estado": "En Progreso"
+        "estado": "Cerrado"
     },
     {
         "id": 2,
         "titulo": "love is just a word",
         "descripcion": "yes it is",
+        "prioridad": "Media",
+        "estado": "Cerrado"
+    },
+    {
+        "id": 3,
+        "titulo": "Test 1",
+        "descripcion": "ayuda en desarrollo",
+        "prioridad": "Media",
+        "estado": "Cerrado"
+    },
+    {
+        "id": 4,
+        "titulo": "",
+        "descripcion": "",
+        "prioridad": "Baja",
+        "estado": "Resuelto"
+    },
+    {
+        "id": 5,
+        "titulo": "Tes 2",
+        "descripcion": "ayuda\r\n\r\n",
         "prioridad": "Media",
         "estado": "Abierto"
     }

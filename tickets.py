@@ -15,3 +15,4 @@ def leer_tickets():
 
     with open(ARCHIVO, "w") as f:
         json.dump(tickets, f, indent=4)
+

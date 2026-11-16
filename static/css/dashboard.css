@@ -1,0 +1,391 @@
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f1f4f9;
+    color: #1e293b;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ESTRUCTURA */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #1e3a5f;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 18px;
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 10px;
+    margin-bottom: 55px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    color: #1e3a5f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    font-size: 18px;
+}
+
+/* MENÚ */
+
+.sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #a9bdd4;
+    padding: 0 12px;
+    margin-bottom: 12px;
+}
+
+.menu-item,
+.logout-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    color: #d7e2ef;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover,
+.logout-link:hover {
+    background-color: #294d78;
+    color: #ffffff;
+}
+
+.menu-item.active {
+    background-color: #ffffff;
+    color: #1e3a5f;
+    font-weight: 600;
+}
+
+.menu-icon {
+    font-size: 19px;
+    width: 20px;
+    text-align: center;
+}
+
+/* CERRAR SESIÓN */
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* BARRA SUPERIOR */
+
+.topbar {
+    height: 76px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 39px;
+    height: 39px;
+    background-color: #e5edf7;
+    color: #1e3a5f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-details strong {
+    font-size: 13px;
+    color: #334155;
+}
+
+.user-details span {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+/* DASHBOARD */
+
+.dashboard-content {
+    padding: 42px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.welcome-section h1 {
+    font-size: 27px;
+    color: #172b4d;
+    margin-bottom: 9px;
+    font-weight: 650;
+}
+
+.welcome-section p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ROL */
+
+.role-badge {
+    background-color: #e5edf7;
+    color: #1e3a5f;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ENCABEZADOS */
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 7px;
+}
+
+.section-header p {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* TARJETAS */
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 25px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    min-height: 190px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+}
+
+.card-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.card-icon.blue {
+    background-color: #e5edf7;
+    color: #315b8a;
+}
+
+.card-icon.purple {
+    background-color: #eee9fa;
+    color: #7354a6;
+}
+
+.card-icon.green {
+    background-color: #e4f3ec;
+    color: #32805b;
+}
+
+.card-text h3 {
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.card-text p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.card-arrow {
+    position: absolute;
+    right: 23px;
+    top: 27px;
+    font-size: 20px;
+    color: #94a3b8;
+}
+
+/* PANEL INFORMATIVO */
+
+.info-panel {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 23px;
+    margin-top: 35px;
+}
+
+.info-icon {
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5edf7;
+    color: #315b8a;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.info-panel h3 {
+    font-size: 14px;
+    margin-bottom: 7px;
+    color: #334155;
+}
+
+.info-panel p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 190px;
+        padding: 22px 12px;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .dashboard-content {
+        padding: 25px 20px;
+    }
+
+    .welcome-section {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .sidebar-logo {
+        margin-bottom: 22px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 15px;
+    }
+
+    .topbar {
+        height: 65px;
+    }
+
+}

@@ -1,44 +1,126 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Crear Ticket</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Ticket | Ticketera</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_ticket.css') }}">
 </head>
 
 <body>
 
-<h1>Nuevo Ticket</h1>
+    <div class="page-container">
 
-<form method="POST">
+        <!-- ENCABEZADO -->
+        <header class="topbar">
 
-    <label>Título:</label>
-    <br>
-    <input type="text" name="titulo">
+            <a href="/dashboard" class="brand">
+                <div class="logo-icon">T</div>
+                <span>Ticketera</span>
+            </a>
 
-    <br><br>
+            <a href="/dashboard" class="back-link">
+                ← Volver al dashboard
+            </a>
 
-    <label>Descripción:</label>
-    <br>
-    <textarea name="descripcion"></textarea>
+        </header>
 
-    <br><br>
 
-    <label>Prioridad:</label>
+        <!-- CONTENIDO -->
+        <main class="main-content">
 
-    <select name="prioridad">
-        <option>Baja</option>
-        <option>Media</option>
-        <option>Alta</option>
-    </select>
+            <div class="page-header">
+                <span class="breadcrumb">Dashboard / Crear ticket</span>
 
-    <br><br>
+                <h1>Nuevo ticket</h1>
 
-    <button type="submit">
-        Crear Ticket
-    </button>
+                <p>
+                    Completá los siguientes datos para registrar una nueva
+                    solicitud de soporte.
+                </p>
+            </div>
 
-</form>
+
+            <!-- FORMULARIO -->
+            <section class="form-card">
+
+                <div class="form-card-header">
+                    <h2>Información de la solicitud</h2>
+                    <p>Los campos son necesarios para registrar el ticket.</p>
+                </div>
+
+                <form method="POST">
+
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+
+                        <input
+                            type="text"
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Ej. Problemas de conexión a internet"
+                            required
+                        >
+
+                        <small>Ingresá un título breve que describa el problema.</small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+
+                        <textarea
+                            id="descripcion"
+                            name="descripcion"
+                            placeholder="Describí detalladamente el inconveniente..."
+                            rows="6"
+                            required
+                        ></textarea>
+
+                        <small>Incluí toda la información que pueda ayudar a resolver la solicitud.</small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="prioridad">Prioridad</label>
+
+                        <select id="prioridad" name="prioridad" required>
+                            <option value="Baja">Baja</option>
+                            <option value="Media" selected>Media</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+
+                        <small>Seleccioná la prioridad según la urgencia del inconveniente.</small>
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a href="/dashboard" class="cancel-button">
+                            Cancelar
+                        </a>
+
+                        <button type="submit" class="submit-button">
+                            Crear ticket →
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <footer class="page-footer">
+                Sistema de Gestión de Soporte
+            </footer>
+
+        </main>
+
+    </div>
 
 </body>
-
 </html>

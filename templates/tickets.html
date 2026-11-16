@@ -1,50 +1,190 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Tickets</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tickets | Ticketera</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tickets.css') }}">
 </head>
 
 <body>
 
-<h1>Listado de Tickets</h1>
+    <div class="page-container">
 
-<table border="1">
+        <!-- BARRA SUPERIOR -->
+        <header class="topbar">
 
-<tr>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Descripción</th>
-    <th>Prioridad</th>
-    <th>Estado</th>
-    <th>Acción</th>
-</tr>
+            <a href="/dashboard" class="brand">
+                <div class="logo-icon">T</div>
+                <span>Ticketera</span>
+            </a>
 
-{% for ticket in tickets %}
+            <a href="/dashboard" class="back-link">
+                ← Volver al dashboard
+            </a>
 
-<tr>
-    <td>{{ ticket.id }}</td>
-    <td>{{ ticket.titulo }}</td>
-    <td>{{ ticket.descripcion }}</td>
-    <td>{{ ticket.prioridad }}</td>
-    <td>{{ ticket.estado }}</td>
+        </header>
 
-    <td>
-        <a href="/estado/{{ ticket.id }}">
-            Cambiar Estado
-        </a>
-    </td>
-</tr>
 
-{% endfor %}
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
 
-</table>
+            <div class="page-header">
 
-<br>
+                <div>
+                    <span class="breadcrumb">Dashboard / Gestión de tickets</span>
 
-<a href="/">Volver</a>
+                    <h1>Listado de tickets</h1>
+
+                    <p>Administrá y realizá el seguimiento de las solicitudes de soporte.</p>
+                </div>
+
+                <a href="/crear_ticket" class="create-button">
+                    + Nuevo ticket
+                </a>
+
+            </div>
+
+
+            <!-- TABLA -->
+            <section class="table-card">
+
+                <div class="table-header">
+                    <div>
+                        <h2>Solicitudes registradas</h2>
+                        <p>Visualizá la información y el estado de cada ticket.</p>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TÍTULO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>PRIORIDAD</th>
+                                <th>ESTADO</th>
+                                <th>ACCIÓN</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for ticket in tickets %}
+
+                            <tr>
+
+                                <td class="ticket-id">
+                                    #{{ ticket.id }}
+                                </td>
+
+                                <td class="ticket-title">
+                                    {{ ticket.titulo }}
+                                </td>
+
+                                <td class="ticket-description">
+                                    {{ ticket.descripcion }}
+                                </td>
+
+                                <td>
+                                    <span class="priority-badge
+                                        {% if ticket.prioridad == 'Baja' %}baja
+                                        {% elif ticket.prioridad == 'Media' %}media
+                                        {% elif ticket.prioridad == 'Alta' %}alta
+                                        {% endif %}">
+
+                                        {{ ticket.prioridad }}
+
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="status-badge
+                                        {% if ticket.estado == 'Abierto' %}abierto
+                                        {% elif ticket.estado == 'En Progreso' %}progreso
+                                        {% elif ticket.estado == 'Resuelto' %}resuelto
+                                        {% elif ticket.estado == 'Cerrado' %}cerrado
+                                        {% endif %}">
+
+                                        {{ ticket.estado }}
+
+                                    </span>
+                                </td>
+
+                                
+<td>
+    <form method="POST" action="/estado/{{ ticket.id }}" class="status-form">
+
+        <select name="estado" class="status-select">
+
+            <option value="Abierto"
+                {% if ticket.estado == 'Abierto' %}selected{% endif %}>
+                Abierto
+            </option>
+
+            <option value="En Progreso"
+                {% if ticket.estado == 'En Progreso' %}selected{% endif %}>
+                En Progreso
+            </option>
+
+            <option value="Resuelto"
+                {% if ticket.estado == 'Resuelto' %}selected{% endif %}>
+                Resuelto
+            </option>
+
+            <option value="Cerrado"
+                {% if ticket.estado == 'Cerrado' %}selected{% endif %}>
+                Cerrado
+            </option>
+
+        </select>
+
+        <button type="submit" class="update-button">
+            Guardar
+        </button>
+
+    </form>
+</td>
+
+                                
+
+                            </tr>
+
+                            {% else %}
+
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    <div class="empty-icon">▤</div>
+                                    <strong>No hay tickets registrados</strong>
+                                    <p>Las solicitudes creadas aparecerán en esta sección.</p>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <footer class="page-footer">
+                Sistema de Gestión de Soporte
+            </footer>
+
+        </main>
+
+    </div>
 
 </body>
-
 </html>

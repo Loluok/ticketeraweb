@@ -1,33 +1,181 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Ticketera</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 
 <body>
 
-    <h1>Bienvenido {{ usuario }}</h1>
+    <div class="dashboard-container">
 
-    <hr>
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
 
-    <h3>Menú</h3>
+            <div class="sidebar-logo">
+                <div class="logo-icon">T</div>
+                <span>Ticketera</span>
+            </div>
 
-    <a href="/crear_ticket">
-        Crear Ticket
-    </a>
+            <div class="sidebar-section">
+                <span class="sidebar-label">MENÚ PRINCIPAL</span>
 
-    <br><br>
+                <a href="/dashboard" class="menu-item active">
+                    <span class="menu-icon">⌂</span>
+                    Dashboard
+                </a>
 
-    <a href="/tickets">
-    Ver Tickets
-    </a>
+                {% if tiene_permiso(rol, "crear_ticket") %}
+                <a href="/crear_ticket" class="menu-item">
+                    <span class="menu-icon">＋</span>
+                    Crear ticket
+                </a>
+                {% endif %}
 
-    <br><br>
+                {% if tiene_permiso(rol, "ver_todos") %}
+                <a href="/tickets" class="menu-item">
+                    <span class="menu-icon">▤</span>
+                    Ver tickets
+                </a>
+                {% endif %}
 
-    <a href="/exportar_csv">
-    Exportar CSV
-    </a>
+                {% if tiene_permiso(rol, "exportar_csv") %}
+                <a href="/exportar_csv" class="menu-item">
+                    <span class="menu-icon">⇩</span>
+                    Exportar CSV
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="/logout" class="logout-link">
+                    <span class="menu-icon">↪</span>
+                    Cerrar sesión
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <div>
+                    <span class="breadcrumb">Inicio / Dashboard</span>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-avatar">
+                        {{ usuario[0]|upper }}
+                    </div>
+
+                    <div class="user-details">
+                        <strong>{{ usuario }}</strong>
+                        <span>{{ rol }}</span>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD -->
+            <section class="dashboard-content">
+
+                <div class="welcome-section">
+                    <div>
+                        <h1>Bienvenido, {{ usuario }}</h1>
+                        <p>Gestioná tus solicitudes de soporte desde un solo lugar.</p>
+                    </div>
+
+                    <span class="role-badge">{{ rol }}</span>
+                </div>
+
+
+                <div class="section-header">
+                    <h2>Accesos rápidos</h2>
+                    <p>Seleccioná una opción para continuar.</p>
+                </div>
+
+
+                <div class="cards-container">
+
+                    {% if tiene_permiso(rol, "crear_ticket") %}
+                    <a href="/crear_ticket" class="dashboard-card">
+
+                        <div class="card-icon blue">＋</div>
+
+                        <div class="card-text">
+                            <h3>Crear ticket</h3>
+                            <p>Registrá una nueva solicitud de soporte.</p>
+                        </div>
+
+                        <span class="card-arrow">→</span>
+
+                    </a>
+                    {% endif %}
+
+
+                    {% if tiene_permiso(rol, "ver_todos") %}
+                    <a href="/tickets" class="dashboard-card">
+
+                        <div class="card-icon purple">▤</div>
+
+                        <div class="card-text">
+                            <h3>Ver tickets</h3>
+                            <p>Consultá y gestioná las solicitudes existentes.</p>
+                        </div>
+
+                        <span class="card-arrow">→</span>
+
+                    </a>
+                    {% endif %}
+
+
+                    {% if tiene_permiso(rol, "exportar_csv") %}
+                    <a href="/exportar_csv" class="dashboard-card">
+
+                        <div class="card-icon green">⇩</div>
+
+                        <div class="card-text">
+                            <h3>Exportar reportes</h3>
+                            <p>Descargá la información de los tickets en CSV.</p>
+                        </div>
+
+                        <span class="card-arrow">→</span>
+
+                    </a>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="info-panel">
+
+                    <div class="info-icon">i</div>
+
+                    <div>
+                        <h3>Centro de soporte</h3>
+                        <p>
+                            Desde esta plataforma podés gestionar las solicitudes
+                            de soporte técnico y realizar el seguimiento de cada ticket.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
 
 </body>
 </html>

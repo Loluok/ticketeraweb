@@ -1,4 +1,4 @@
-<h2>{{ ticket.titulo }}</h2>
+<!-- <h2>{{ ticket.titulo }}</h2>
 
 Estado actual:
 
@@ -19,4 +19,140 @@ Estado actual:
 Actualizar
 </button>
 
-</form>
+</form> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Ticket | Ticketera</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/actualizar_estado.css') }}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- BARRA SUPERIOR -->
+        <header class="topbar">
+
+            <a href="/dashboard" class="brand">
+                <div class="logo-icon">T</div>
+                <span>Ticketera</span>
+            </a>
+
+            <a href="/dashboard" class="back-link">
+                ← Volver al dashboard
+            </a>
+
+        </header>
+
+
+        <!-- CONTENIDO -->
+        <main class="main-content">
+
+            <div class="page-header">
+
+                <span class="breadcrumb">Dashboard / Actualizar ticket</span>
+
+                <h1>Actualizar ticket</h1>
+
+                <p>Consultá el estado actual y actualizá el seguimiento de la solicitud.</p>
+
+            </div>
+
+
+            <!-- TARJETA -->
+            <section class="ticket-card">
+
+                <div class="card-header">
+                    <span class="section-label">DETALLE DE LA SOLICITUD</span>
+
+                    <h2>{{ ticket.titulo }}</h2>
+                </div>
+
+
+                <div class="current-status">
+
+                    <span class="field-label">Estado actual</span>
+
+                    <span class="status-badge
+                        {% if ticket.estado == 'Abierto' %}abierto
+                        {% elif ticket.estado == 'En Progreso' %}progreso
+                        {% elif ticket.estado == 'Resuelto' %}resuelto
+                        {% elif ticket.estado == 'Cerrado' %}cerrado
+                        {% endif %}">
+
+                        {{ ticket.estado }}
+
+                    </span>
+
+                </div>
+
+
+                <form method="POST">
+
+                    <div class="form-group">
+
+                        <label for="estado">Nuevo estado</label>
+
+                        <select name="estado" id="estado" required>
+
+                            <option value="Abierto"
+                                {% if ticket.estado == 'Abierto' %}selected{% endif %}>
+                                Abierto
+                            </option>
+
+                            <option value="En Progreso"
+                                {% if ticket.estado == 'En Progreso' %}selected{% endif %}>
+                                En Progreso
+                            </option>
+
+                            <option value="Resuelto"
+                                {% if ticket.estado == 'Resuelto' %}selected{% endif %}>
+                                Resuelto
+                            </option>
+
+                            <option value="Cerrado"
+                                {% if ticket.estado == 'Cerrado' %}selected{% endif %}>
+                                Cerrado
+                            </option>
+
+                        </select>
+
+                        <small>Seleccioná el nuevo estado de la solicitud.</small>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a href="/dashboard" class="cancel-button">
+                            Cancelar
+                        </a>
+
+                        <button type="submit" class="submit-button">
+                            Actualizar estado →
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <footer class="page-footer">
+                Sistema de Gestión de Soporte
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
