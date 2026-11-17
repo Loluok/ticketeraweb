@@ -15,23 +15,9 @@
     },
     {
         "id": 3,
-        "titulo": "Test 1",
-        "descripcion": "ayuda en desarrollo",
-        "prioridad": "Media",
-        "estado": "Cerrado"
-    },
-    {
-        "id": 4,
-        "titulo": "",
-        "descripcion": "",
-        "prioridad": "Baja",
-        "estado": "Resuelto"
-    },
-    {
-        "id": 5,
-        "titulo": "Tes 2",
-        "descripcion": "ayuda\r\n\r\n",
-        "prioridad": "Media",
-        "estado": "Abierto"
+        "titulo": "quiero un squishy",
+        "descripcion": "o uno de queso con vaselina o el de sandia crunchy",
+        "prioridad": "Alta",
+        "estado": "En Progreso"
     }
 ]

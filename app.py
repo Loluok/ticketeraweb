@@ -85,7 +85,7 @@ def crear_ticket():
         with open("data/tickets.json", "w") as archivo:
             json.dump(tickets, archivo, indent=4)
 
-        return "Ticket creado correctamente"
+        return redirect("/dashboard")
 
     return render_template("crear_ticket.html")
 
