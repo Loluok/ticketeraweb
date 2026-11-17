@@ -11,13 +11,20 @@
 
 ### Funcionalidades
 
-Login web
-Restricción horaria de acceso
+Login web 
+<br>
+Restricción horaria de acceso 
+<br>
 Creación y consulta de tickets
+<br>
 Gestión de estados
+<br>
 Persistencia en JSON
+<br>
 Exportación CSV
+<br>
 Sistema de roles (Admin, Operador, Usuario y Consulta)
+<br>
 Control de acceso según permisos
 
 ### Tecnologías
