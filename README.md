@@ -6,7 +6,7 @@
 
 ---
 
-## Integrantes
+## Integrantes ᨳଓ
 
 - Lola Commenge
 - Cande Ali
@@ -18,7 +18,7 @@ Aplicación web desarrollada en Python y Flask para la gestión de solicitudes d
 
 ---
 
-## Funcionalidades
+## Funcionalidades ᨳଓ
 
 Autenticación mediante Active Directory (LDAP)
 <br>
@@ -44,7 +44,7 @@ Exportación de información en formato CSV
 
 ---
 
-## Roles
+## Roles ᨳଓ
 
 ### Admin
 Acceso completo al sistema.
@@ -60,7 +60,7 @@ Acceso de solo lectura.
 
 ---
 
-## Active Directory
+## Active Directory ᨳଓ
 
 Se implementó un dominio Active Directory para la autenticación de usuarios y la asignación de permisos mediante grupos.
 
@@ -80,27 +80,19 @@ Se implementó un dominio Active Directory para la autenticación de usuarios y 
 
 ---
 
-## Tecnologías utilizadas
+## Tecnologías utilizadas ᨳଓ
 
-- Python
-- Flask
-- HTML
-- CSS
-- JSON
-- CSV
-- Active Directory
-- LDAP
-- VirtualBox
+Python | Flask | HTML | CSS | JSON | CSV | Active Directory | LDAP | VirtualBox
 
 ---
 
-## Persistencia
+## Persistencia ᨳଓ
 
 La información de los tickets se almacena en archivos JSON, permitiendo conservar el estado, responsables, comentarios e historial de cada solicitud.
 
 ---
 
-## Seguridad
+## Seguridad ᨳଓ
 
 - Autenticación mediante Active Directory (LDAP)
 - Restricción horaria de acceso
