@@ -4,9 +4,10 @@
         "titulo": "Restablecimiento de contrase\u00f1a",
         "descripcion": "El usuario olvid\u00f3 la contrase\u00f1a del dominio y no puede iniciar sesi\u00f3n.",
         "prioridad": "Baja",
-        "estado": "Abierto",
+        "estado": "En Progreso",
         "responsable": "Sin asignar",
-        "comentarios": [],
+        "comentarios": [
+        ],
         "historial": [
             "Ticket creado"
         ]

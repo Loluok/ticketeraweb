@@ -1,5 +1,4 @@
 # Usuarios de prueba.
-# Luego serán obtenidos desde Active Directory.
 
 USUARIOS = {
     "admin": "Admin",

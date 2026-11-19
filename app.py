@@ -181,6 +181,7 @@ def cambiar_responsable(id):
     return redirect("/tickets")
 
 @app.route("/comentario/<int:id>", methods=["POST"])
+@permiso_requerido("comentar")
 def agregar_comentario(id):
 
     comentario = request.form.get("comentario")
