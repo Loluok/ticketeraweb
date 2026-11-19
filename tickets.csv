@@ -1,8 +1,3 @@
-ID,Titulo,Descripcion,Prioridad,Estado
-1,wdyt ab being abroad?,kkiee,Baja,Cerrado
-2,love is just a word,yes it is,Media,Cerrado
-3,Test 1,ayuda en desarrollo,Media,Cerrado
-4,,,Baja,Resuelto
-5,Tes 2,"ayuda
-
-",Media,Abierto
+ID,Titulo,Descripcion,Prioridad,Estado,Responsable
+1,Restablecimiento de contraseña,El usuario olvidó la contraseña del dominio y no puede iniciar sesión.,Baja,Abierto,Sin asignar
+2,Sin acceso a carpeta compartida,El usuario no puede acceder a la carpeta de red del área administrativa,Alta,Abierto,juan

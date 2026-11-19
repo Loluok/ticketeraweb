@@ -1,23 +1,30 @@
 [
     {
         "id": 1,
-        "titulo": "wdyt ab being abroad?",
-        "descripcion": "kkiee",
+        "titulo": "Restablecimiento de contrase\u00f1a",
+        "descripcion": "El usuario olvid\u00f3 la contrase\u00f1a del dominio y no puede iniciar sesi\u00f3n.",
         "prioridad": "Baja",
-        "estado": "Cerrado"
+        "estado": "Abierto",
+        "responsable": "Sin asignar",
+        "comentarios": [],
+        "historial": [
+            "Ticket creado"
+        ]
     },
     {
         "id": 2,
-        "titulo": "love is just a word",
-        "descripcion": "yes it is",
-        "prioridad": "Media",
-        "estado": "Cerrado"
-    },
-    {
-        "id": 3,
-        "titulo": "quiero un squishy",
-        "descripcion": "o uno de queso con vaselina o el de sandia crunchy",
+        "titulo": "Sin acceso a carpeta compartida",
+        "descripcion": "El usuario no puede acceder a la carpeta de red del \u00e1rea administrativa",
         "prioridad": "Alta",
-        "estado": "En Progreso"
+        "estado": "Abierto",
+        "responsable": "juan",
+        "comentarios": [
+            "Usuario reporta error de permisos"
+        ],
+        "historial": [
+            "Ticket creado",
+            "Responsable asignado a juan",
+            "Estado cambiado a Abierto"
+        ]
     }
 ]

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -68,10 +67,14 @@
                             <tr>
                                 <th>ID</th>
                                 <th>TÍTULO</th>
+                                <th>RESPONSABLE</th>
                                 <th>DESCRIPCIÓN</th>
                                 <th>PRIORIDAD</th>
                                 <th>ESTADO</th>
                                 <th>ACCIÓN</th>
+                                <th>COMENTARIOS</th>
+                                <th>HISTORIAL</th>
+
                             </tr>
                         </thead>
 
@@ -87,6 +90,31 @@
 
                                 <td class="ticket-title">
                                     {{ ticket.titulo }}
+                                </td>
+
+                                <td>
+                                    <form action="/responsable/{{ ticket.id }}" method="POST">
+                                        <select name="responsable" class="responsable-select">
+                                            <option value="Sin asignar" {% if ticket.get('responsable')=='Sin asignar'
+                                                %} selected {% endif %}>
+                                                Sin asignar
+                                            </option>
+
+                                            <option value="admin" {% if ticket.get('responsable')=='admin' %} selected
+                                                {% endif %}>
+                                                admin
+                                            </option>
+
+                                            <option value="juan" {% if ticket.get('responsable')=='juan' %} selected {%
+                                                endif %}>
+                                                juan
+                                            </option>
+                                        </select>
+
+                                        <button type="submit" class="guardar-btn">
+                                            Guardar
+                                        </button>
+                                    </form>
                                 </td>
 
                                 <td class="ticket-description">
@@ -118,42 +146,77 @@
                                     </span>
                                 </td>
 
-                                
-<td>
-    <form method="POST" action="/estado/{{ ticket.id }}" class="status-form">
+                                <td> <!--AGREGAr comentarios-->
 
-        <select name="estado" class="status-select">
+                                    {% for comentario in ticket.get('comentarios', []) %}
 
-            <option value="Abierto"
-                {% if ticket.estado == 'Abierto' %}selected{% endif %}>
-                Abierto
-            </option>
+                                    <div class="comentario-item">
+                                        {{ comentario }}
+                                    </div>
 
-            <option value="En Progreso"
-                {% if ticket.estado == 'En Progreso' %}selected{% endif %}>
-                En Progreso
-            </option>
+                                    {% endfor %}
 
-            <option value="Resuelto"
-                {% if ticket.estado == 'Resuelto' %}selected{% endif %}>
-                Resuelto
-            </option>
+                                    <form action="/comentario/{{ ticket.id }}" method="POST">
 
-            <option value="Cerrado"
-                {% if ticket.estado == 'Cerrado' %}selected{% endif %}>
-                Cerrado
-            </option>
+                                        <input type="text" name="comentario" placeholder="Agregar comentario"
+                                            class="comentario-input">
 
-        </select>
+                                        <button type="submit" class="guardar-btn">
+                                            Agregar
+                                        </button>
 
-        <button type="submit" class="update-button">
-            Guardar
-        </button>
+                                    </form>
 
-    </form>
-</td>
+                                </td>
 
-                                
+
+                                <td>
+                                    <form method="POST" action="/estado/{{ ticket.id }}" class="status-form">
+
+                                        <select name="estado" class="status-select">
+
+                                            <option value="Abierto" {% if ticket.estado=='Abierto' %}selected{% endif
+                                                %}>
+                                                Abierto
+                                            </option>
+
+                                            <option value="En Progreso" {% if ticket.estado=='En Progreso' %}selected{%
+                                                endif %}>
+                                                En Progreso
+                                            </option>
+
+                                            <option value="Resuelto" {% if ticket.estado=='Resuelto' %}selected{% endif
+                                                %}>
+                                                Resuelto
+                                            </option>
+
+                                            <option value="Cerrado" {% if ticket.estado=='Cerrado' %}selected{% endif
+                                                %}>
+                                                Cerrado
+                                            </option>
+
+                                        </select>
+
+                                        <button type="submit" class="update-button">
+                                            Guardar
+                                        </button>
+
+                                    </form>
+                                </td>
+
+                                <td>
+
+                                    {% for evento in ticket.get('historial', []) %}
+
+                                    <div class="comentario-item">
+                                        {{ evento }}
+                                    </div>
+
+                                    {% endfor %}
+
+                                </td>
+
+
 
                             </tr>
 
@@ -187,4 +250,5 @@
     </div>
 
 </body>
+
 </html>

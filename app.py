@@ -15,6 +15,7 @@ from datetime import datetime
 
 from roles import obtener_rol, tiene_permiso
 from auth import login_required, permiso_requerido
+from ldap_auth import autenticar_usuario
 app = Flask(__name__)
 app.secret_key = "clave-temporal-para-desarrollo"
 
@@ -30,6 +31,13 @@ def login():
         return "Acceso denegado. Fuera del horario permitido.", 403
 
     usuario = request.form.get("usuario", "").strip().lower()
+    password = request.form.get("password", "")
+
+    if not autenticar_usuario(usuario, password):
+        return render_template(
+            "login.html",
+            error="Usuario o contraseña incorrectos."
+    ), 401
 
     rol = obtener_rol(usuario)
 
@@ -77,7 +85,10 @@ def crear_ticket():
             "titulo": titulo,
             "descripcion": descripcion,
             "prioridad": prioridad,
-            "estado": "Abierto"
+            "estado": "Abierto",
+            "responsable": "Sin asignar",
+            "comentarios": [],
+            "historial": ["Ticket creado"],
         }
 
         tickets.append(nuevo_ticket)
@@ -118,12 +129,76 @@ def cambiar_estado(id):
 
     for ticket in tickets:
         if ticket["id"] == id:
+
             ticket["estado"] = estado
+
+            if "historial" not in ticket:
+                ticket["historial"] = []
+
+            ticket["historial"].append(
+                f"Estado cambiado a {estado}"
+        )
+
             ticket_encontrado = True
             break
 
     if not ticket_encontrado:
         abort(404)
+
+    with open("data/tickets.json", "w") as archivo:
+        json.dump(tickets, archivo, indent=4)
+
+    return redirect("/tickets")
+
+@app.route("/responsable/<int:id>", methods=["POST"])
+@permiso_requerido("asignar_responsable")
+def cambiar_responsable(id):
+
+    responsable = request.form.get("responsable")
+
+    with open("data/tickets.json", "r") as archivo:
+        tickets = json.load(archivo)
+
+    for ticket in tickets:
+        if ticket["id"] == id:
+
+            ticket["responsable"] = responsable
+
+            if "historial" not in ticket:
+                ticket["historial"] = []
+
+            ticket["historial"].append(
+                f"Responsable asignado a {responsable}"
+            )
+
+        break
+
+            
+
+    with open("data/tickets.json", "w") as archivo:
+        json.dump(tickets, archivo, indent=4)
+
+    return redirect("/tickets")
+
+@app.route("/comentario/<int:id>", methods=["POST"])
+def agregar_comentario(id):
+
+    comentario = request.form.get("comentario")
+
+    with open("data/tickets.json", "r") as archivo:
+        tickets = json.load(archivo)
+
+    for ticket in tickets:
+
+        if ticket["id"] == id:
+
+            if "comentarios" not in ticket:
+                ticket["comentarios"] = []
+
+            if comentario:
+                ticket["comentarios"].append(comentario)
+
+            break
 
     with open("data/tickets.json", "w") as archivo:
         json.dump(tickets, archivo, indent=4)
@@ -145,7 +220,9 @@ def exportar_csv():
             "Titulo",
             "Descripcion",
             "Prioridad",
-            "Estado"
+            "Estado",
+            "Responsable",
+    
         ])
 
         for ticket in tickets:
@@ -154,7 +231,8 @@ def exportar_csv():
                 ticket["titulo"],
                 ticket["descripcion"],
                 ticket["prioridad"],
-                ticket["estado"]
+                ticket["estado"],
+                ticket.get("responsable", "Sin asignar"),
             ])
 
     return send_file(
@@ -163,9 +241,9 @@ def exportar_csv():
     )
 
 def horario_permitido():
-
+    #return True
     hora = datetime.now().hour
-# AJUSTAR HORARIO
+#descomentar el return para poder acceder :3
     return 8 <= hora < 21
 
 @app.route("/logout")
