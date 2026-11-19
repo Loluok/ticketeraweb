@@ -1,0 +1,4 @@
+## Librerías externas ᨳଓ
+
+Flask
+ldap3
